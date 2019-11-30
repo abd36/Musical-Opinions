@@ -7,30 +7,34 @@
 var express    = require('express');        // call express
 var app        = express();                 // define our app using express
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var passport = require('passport');
+var cors =  require('cors');
+
+const passportConfig = require('./Config/passport')
+const openRouter = require('./routers/openRouter'); // Imports public routes
+const mongoDB = 'mongodb+srv://abd36:test@cluster0-resu7.mongodb.net/test?retryWrites=true&w=majority';
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var port = process.env.PORT || 8080;        // set our port
+app.use(cors({origin: '*'}))
 
-// ROUTES FOR OUR API
-// =============================================================================
-var router = express.Router();              // get an instance of the express Router
+app.use(passport.initialize());
+app.use(passport.session());
 
-// test route to make sure everything is working (accessed at GET http://localhost:8080/api)
-router.get('/', function(req, res) {
-    res.json({ message: 'hooray! welcome to our api!' });   
+mongoose.connect(mongoDB, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
 });
-
-// more routes for our API will happen here
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
-app.use('/api', router);
+app.use('/open', openRouter);
 
 // START THE SERVER
 // =============================================================================
-app.listen(port);
-console.log('Listening on port ' + port);
+var port = process.env.PORT || 8080;  
+app.listen(port, () => console.log('Listening on port ' + port);
