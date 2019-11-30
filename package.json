@@ -1,0 +1,24 @@
+{
+  "name": "se3316-achalya-lab5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "express": "~4.0.0",
+    "mongoose": "~3.6.13",
+    "body-parser": "~1.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abd36/se3316-achalya-lab5.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abd36/se3316-achalya-lab5/issues"
+  },
+  "homepage": "https://github.com/abd36/se3316-achalya-lab5#readme"
+}
