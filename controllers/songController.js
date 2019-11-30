@@ -1,0 +1,69 @@
+const mongoose = require("mongoose");
+const Song = require("../models/songModel");
+
+exports.createSong = function(req, res) {
+  let song = new Song({
+    _id: mongoose.Types.ObjectId(),
+    title: req.body.title,
+    artist: req.body.artist,
+    album: req.body.album,
+    comment: req.body.comment,
+    genre: req.body.genre,
+    year: req.body.year,
+    hidden: req.body.hidden,
+    copyRightViolation: req.body.copyRightViolation
+  });
+
+  song.save(function(err) {
+    if (err) {
+      res.send("can't save song, error: " + err)
+    }
+    res.send("Song ID " + song._id);
+  });
+};
+
+exports.topTenSongs = function(req, res) {
+  Song.find({}, {}, { sort: { numOfRatings: -1 } }, function(err, songs) {
+    if (err) {
+      res.send("can't find songs, error: " + err);
+    } else {
+      res.send(songs.slice(0, 9));
+    }
+  });
+};
+
+exports.toggleHide = function(req, res) {
+  let id = req.params.id;
+  Song.findOne({ _id: id }, function(err, song) {
+    if (err) {
+      res.send("can't find song, error: " + err);
+    } else {
+      song.hidden = !song.hidden;
+      song.save(function(err, toggledSong) {
+        if (err) {
+          res.send("can't save toggled song, error: " + err);
+        } else {
+          res.send(toggledSong);
+        }
+      });
+    }
+  });
+};
+
+exports.toggleCopyRight = function(req, res) {
+  let id = req.params.id;
+  Song.findOne({ _id: id }, function(err, song) {
+    if (err) {
+      res.send("can't find song, error: " + err);
+    } else {
+      song.copyRightViolation = !song.copyRightViolation;
+      song.save(function(err, toggledSong) {
+        if (err) {
+          res.send("can't save toggled song, error: ");
+        } else {
+          res.send(toggledSong);
+        }
+      });
+    }
+  });
+};

@@ -4,9 +4,9 @@ const songController = require('../controllers/songController');
 const reviewController = require('../controllers/reviewController');
 const userController = require('../controllers/userController');
 const passport = require('passport')
-const passportConfig = require('../Config/passport')
+// const passportConfig = require('../Config/passport')
 
-router.post('/user/login', passport.authenticate('local', {session: false, failureRedirect: "/open/user/login/error"}),  userController.login)
+// router.post('/user/login', passport.authenticate('local', {session: false, failureRedirect: "/open/user/login/error"}),  userController.login)
 
 router.get('/user/login/error', userController.loginError);
 
