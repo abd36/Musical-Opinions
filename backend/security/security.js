@@ -16,7 +16,7 @@ passport.use(
       }
       else {
         if (!user) {
-          console.log(err);
+          console.log("can't find user - " + err);
           return done(null, false);
         }
         else {

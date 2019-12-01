@@ -16,31 +16,34 @@ exports.createUser = async function (req, res) {
 
     user.save(function(err, user) {
       if (err) {
-        res.send("can't save user - " + err);
+        console.log(err);
+        res.send({ error: "can't save user" });
       }
       else {
-        res.send(user)
+        const token = jwt.sign(user.toJSON(), secret.JWT_SECRET, { expiresIn: '45m' });
+        const {iat, exp} = jwt.decode(token);
+        res.send({ iat, exp, token });
       }
     })
   } catch (err) {
-    res.send("can't hash/get password - " + err);
+    res.send({ error: "can't hash/get password"});
   }
 };
 
-exports.login = function(req, res, next){
+exports.login = function(req, res){
   user = req.user;
   if (!user.isActive) {
-    res.send({message: "user is inactive"})
+    res.send({ error: "user is inactive" })
   }
   else {
-    const token = jwt.sign(user.toJSON(), secret.JWT_SECRET, {expiresIn: '45m'})
+    const token = jwt.sign(user.toJSON(), secret.JWT_SECRET, { expiresIn: '45m' });
     const {iat, exp} = jwt.decode(token);
-    res.send({iat, exp, token});
+    res.send({ iat, exp, token });
   }
 }
 
-exports.loginError = function(req, res, next){
-  res.send({message: "email or password is wrong"});
+exports.loginError = function(req, res){
+  res.send({error: "email or password is wrong"});
 }
 
 exports.toggleAdmin = function(req, res){

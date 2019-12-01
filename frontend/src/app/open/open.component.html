@@ -1,7 +1,24 @@
-<h3>top 10 songs</h3>
-<ol>
-	<li *ngFor="let song of songs">
-		<p (click)="song.showInfo = !song.showInfo">{{ song.title }}</p>
-		<app-song-info *ngIf="song.showInfo" [song]="song"></app-song-info>
-	</li>
-</ol>
+<p>{{ error }}</p>
+<div>
+	<h2>sign in</h2>
+	<form (ngSubmit)="login()">
+		<label for="email">email:</label>
+		<input type="text" name="email" [(ngModel)]="userModel.email" />
+		<label for="password">password:</label>
+		<input type="text" name="password" [(ngModel)]="userModel.password" />
+		<input type="submit" />
+	</form>
+</div>
+<div>
+	<h2>create a new account</h2>
+	<form (ngSubmit)="createUser()">
+        <label for="email">email:</label>
+        <input type="text" name="email" [(ngModel)]="newUserModel.email" />
+        <label for="password">password:</label>
+        <input type="text" name="password" [(ngModel)]="newUserModel.password" />
+        <input type="submit" />
+    </form>
+</div>
+
+<app-top-songs></app-top-songs>
+

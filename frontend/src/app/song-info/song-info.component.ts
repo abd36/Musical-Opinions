@@ -13,17 +13,29 @@ import { Review } from "../review";
 export class SongInfoComponent implements OnInit {
 	@Input() song: Song;
 
-	mostRecentReview = new Review(0, '', '', '');
-	allReviews : object;
+  mostRecentReview = new Review(0, '', '', '');
+  reviewsFlag: boolean = false;
+  allReviews : object;
+  allReviewsFlag: boolean = false;
 
   constructor(private openService: OpenService) { }
 
   ngOnInit() {
-  	this.openService.getMostRecentReview(this.song._id).subscribe(data => { this.mostRecentReview = data; });
+    this.getMostRecentReview(this.song._id);
+    this.getAllReviews(this.song._id);
   }
 
-  getAllReviews(id: string) {
-  	this.openService.getAllReviews(id).subscribe(data => { this.allReviews = data; });
+  getMostRecentReview(id: string) {
+    this.openService.getMostRecentReview(this.song._id).subscribe(data => {
+      if (data != null) {
+        this.reviewsFlag = true;
+        this.mostRecentReview = data;
+      }
+    });
   }
+
+  getAllReviews(id: string) { this.openService.getAllReviews(id).subscribe(data => { this.allReviews = data; }); }
+
+  enableAllReviews() { this.allReviewsFlag = !this.allReviewsFlag; }
 
 }

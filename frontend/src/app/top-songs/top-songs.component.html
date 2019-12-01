@@ -1,0 +1,7 @@
+<h3>top 10 songs</h3>
+<ol>
+	<li *ngFor="let song of songs">
+		<p (click)="song.showInfo = !song.showInfo">{{ song.title }}</p>
+		<app-song-info *ngIf="song.showInfo" [song]="song"></app-song-info>
+	</li>
+</ol>
