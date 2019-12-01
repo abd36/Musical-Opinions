@@ -40,5 +40,5 @@ mongoose.connect(mongoDB, {
 
 // START THE SERVER
 // =============================================================================
-var port = process.env.PORT || 8080;  
+var port = process.env.PORT || 8000;  
 app.listen(port, () => console.log('Listening on port ' + port));

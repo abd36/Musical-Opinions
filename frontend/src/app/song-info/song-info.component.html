@@ -1,0 +1,19 @@
+<div>
+	<p>Artist: {{song.artist}}, Album: {{song.album}}, Comment: {{song.comment}}, Genre: {{song.genre}}, Year: {{song.year }}, Average Rating: {{song.averageRating}}, Number of Ratings: {{song.numberOfRatings}}</p>
+
+	<h4>Most Recent Review:</h4>
+	<p>by: {{ mostRecentReview.userEmail }}</p>
+	<p>rating: {{ mostRecentReview.rating }}/5 </p>
+	<p>comment: {{ mostRecentReview.comment }} </p>
+	<p>timestamp: {{ mostRecentReview.createdAt }} </p>
+
+	<button (click)="getAllReviews(song._id)">all reviews</button>
+	<ol>
+		<li *ngFor="let review of allReviews">
+			<p>by: {{ review.userEmail }}</p>
+			<p>rating: {{ review.rating }}/5</p>
+			<p>comment: {{ review.comment }}</p>
+			<p>timestamp: {{ review.createdAt }}</p>
+		</li>
+	</ol>
+</div>
