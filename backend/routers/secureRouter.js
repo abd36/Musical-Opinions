@@ -14,7 +14,7 @@ router.post('/user/active/:id', userController.toggleActive);
 
 //song routes
 router.post('/song/create', songController.createSong);
-router.post('/song/hide/:id', songController.toggleHide);
-router.get('/song/copyright', songController.toggleCopyRight);
+router.post('/song/hidden/:id', songController.toggleHide);
+router.post('/song/copyright/:id', songController.toggleCopyRight);
 
 module.exports = router;

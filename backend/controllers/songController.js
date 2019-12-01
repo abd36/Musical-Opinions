@@ -51,20 +51,19 @@ exports.toggleHide = function(req, res) {
 };
 
 exports.toggleCopyRight = function(req, res) {
-  // let id = req.params.id;
-  // Song.findOne({ _id: id }, function(err, song) {
-  //   if (err) {
-  //     res.send("can't find song - " + err);
-  //   } else {
-  //     song.copyRightStrike = !song.copyRightStrike;
-  //     song.save(function(err, toggledSong) {
-  //       if (err) {
-  //         res.send("can't save toggled song - ");
-  //       } else {
-  //         res.send(toggledSong);
-  //       }
-  //     });
-  //   }
-  // });
-  res.send("tet");
+  let id = req.params.id;
+  Song.findOne({ _id: id }, function(err, song) {
+    if (err) {
+      res.send("can't find song - " + err);
+    } else {
+      song.copyRightStrike = !song.copyRightStrike;
+      song.save(function(err, toggledSong) {
+        if (err) {
+          res.send("can't save toggled song - ");
+        } else {
+          res.send(toggledSong);
+        }
+      });
+    }
+  });
 };
