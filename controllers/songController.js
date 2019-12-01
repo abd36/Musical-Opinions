@@ -14,18 +14,18 @@ exports.createSong = function(req, res) {
     copyRightViolation: req.body.copyRightViolation
   });
 
-  song.save(function(err) {
+  song.save(function(err, song) {
     if (err) {
-      res.send("can't save song, error: " + err)
+      res.send("can't save song - " + err)
     }
-    res.send("Song ID " + song._id);
+    res.send(song);
   });
 };
 
 exports.topTenSongs = function(req, res) {
   Song.find({}, {}, { sort: { numOfRatings: -1 } }, function(err, songs) {
     if (err) {
-      res.send("can't find songs, error: " + err);
+      res.send("can't find songs - " + err);
     } else {
       res.send(songs.slice(0, 9));
     }
@@ -36,12 +36,12 @@ exports.toggleHide = function(req, res) {
   let id = req.params.id;
   Song.findOne({ _id: id }, function(err, song) {
     if (err) {
-      res.send("can't find song, error: " + err);
+      res.send("can't find song - " + err);
     } else {
       song.hidden = !song.hidden;
       song.save(function(err, toggledSong) {
         if (err) {
-          res.send("can't save toggled song, error: " + err);
+          res.send("can't save toggled song - " + err);
         } else {
           res.send(toggledSong);
         }
@@ -51,19 +51,20 @@ exports.toggleHide = function(req, res) {
 };
 
 exports.toggleCopyRight = function(req, res) {
-  let id = req.params.id;
-  Song.findOne({ _id: id }, function(err, song) {
-    if (err) {
-      res.send("can't find song, error: " + err);
-    } else {
-      song.copyRightViolation = !song.copyRightViolation;
-      song.save(function(err, toggledSong) {
-        if (err) {
-          res.send("can't save toggled song, error: ");
-        } else {
-          res.send(toggledSong);
-        }
-      });
-    }
-  });
+  // let id = req.params.id;
+  // Song.findOne({ _id: id }, function(err, song) {
+  //   if (err) {
+  //     res.send("can't find song - " + err);
+  //   } else {
+  //     song.copyRightStrike = !song.copyRightStrike;
+  //     song.save(function(err, toggledSong) {
+  //       if (err) {
+  //         res.send("can't save toggled song - ");
+  //       } else {
+  //         res.send(toggledSong);
+  //       }
+  //     });
+  //   }
+  // });
+  res.send("tet");
 };
