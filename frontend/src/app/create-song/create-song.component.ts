@@ -13,7 +13,7 @@ import { Song } from "../song";
   styleUrls: ['./create-song.component.css']
 })
 export class CreateSongComponent implements OnInit {
-  song = new Song("", "", "", "", "", "", 0, 0, 0, 0, false, false);
+  song = new Song("", "", "", "", "", "", 0, 0, 0, 0, 0, false, false);
 
   constructor(
     private router: Router,

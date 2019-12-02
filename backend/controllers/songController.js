@@ -4,7 +4,18 @@ const Song = require("../models/songModel");
 exports.all = function(req, res){
   Song.find({}, function(err, songs) {
     if(err) {
-      res.send({ error: err} )
+      res.send({ error: err } )
+    }
+    else {
+      res.send(songs);
+    }
+  })
+}
+
+exports.allButHidden = function(req, res){
+  Song.find({ hidden: false }, {}, {}, function(err, songs) {
+    if(err) {
+      res.send({ error: err } )
     }
     else {
       res.send(songs);
@@ -20,6 +31,7 @@ exports.create = function(req, res) {
     album: req.body.album,
     comment: req.body.comment,
     genre: req.body.genre,
+    track: req.body.track,
     year: req.body.year,
     hidden: req.body.hidden,
     copyRightViolation: req.body.copyRightViolation

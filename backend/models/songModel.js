@@ -9,6 +9,7 @@ let SongSchema = new Schema({
     comment: {type: String, max: 40, default: 'Unknown'},
     genre: {type: String, max: 40, default: "Unkown"},
     year: {type: String, max: 4, default: "2019"},
+    track: {type: Number, default: 0},
     averageRating: {type: Number, default: 0},
     sumOfRatings: {type: Number, default: 0},
     numberOfRatings: {type: Number, default: 0},

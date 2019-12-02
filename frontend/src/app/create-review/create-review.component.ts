@@ -37,7 +37,6 @@ export class CreateReviewComponent implements OnInit {
 
   submit() {
     this.review.userEmail = this.user.email;
-    console.log(this.review);
     this.secureService.createReview(this.review).subscribe(data => {
       if (!data.error) {
         this.cancel();
@@ -48,7 +47,7 @@ export class CreateReviewComponent implements OnInit {
   }
 
   getAllSongs(){
-    this.secureService.getAllSongs().subscribe(data => {
+    this.secureService.getAllButHiddenSongs().subscribe(data => {
       this.songs = data;
     })
   }

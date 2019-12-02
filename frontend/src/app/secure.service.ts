@@ -15,6 +15,8 @@ export class SecureService {
 
   getAllSongs() { return this.http.getAllSongs(); }
 
+  getAllButHiddenSongs() { return this.http.getAllSongsButHidden(); }
+
   createReview(review: Review) { return this.http.postReview(review); }
 
   createSong(song: Song) { return this.http.postSong(song); }

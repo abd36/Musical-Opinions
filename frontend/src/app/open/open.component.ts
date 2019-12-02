@@ -48,7 +48,9 @@ export class OpenComponent implements OnInit {
 				this.router.navigate(["secure"]);
 			}
 			else {
-				this.error = data.error;
+				console.log(data);
+				if (data.error.errmsg.includes("duplicate")) this.error = "this email address already exists";
+				else this.error = data.error;
 			}
 		});
 	}

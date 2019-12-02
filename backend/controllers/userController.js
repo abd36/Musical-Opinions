@@ -27,8 +27,7 @@ exports.createUser = async function (req, res) {
 
     user.save(function(err, user) {
       if (err) {
-        console.log(err);
-        res.send({ error: "can't save user" });
+        res.send({ error: err });
       }
       else {
         const token = jwt.sign(user.toJSON(), secret.JWT_SECRET, { expiresIn: '45m' });

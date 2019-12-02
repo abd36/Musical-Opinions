@@ -28,6 +28,8 @@ export class HttpService {//TODO: group model methods together
 	
 	getAllSongs(){ return this.http.get<any>('/api/secure/song/all'); }
 
+	getAllSongsButHidden(){ return this.http.get<any>('/api/secure/song/allButHidden'); }
+
 	postReview(review: Review) { return this.http.post<any>('api/secure/review/create', review); }
 
 	postSong(song: Song) { return this.http.post<any>('api/secure/song/create', song); }

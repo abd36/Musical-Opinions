@@ -15,7 +15,7 @@ export class AdminComponent implements OnInit {
   users: Object;
   user = new User("", "", "", false, true);
   songs: Object;
-  song = new Song("", "", "", "", "", "", 0, 0, 0, 0, false, false);
+  song = new Song("", "", "", "", "", "", 0, 0, 0, 0, 0, false, false);
   error: string = "";
   change: boolean = true;
 
@@ -67,7 +67,7 @@ export class AdminComponent implements OnInit {
     this.secureService.getAllSongs().subscribe(data => {
       if (!data.error) this.songs = data;
       else this.error = data.error;
-    })
+    });
   }
 
   logout() { this.router.navigate([""]); }

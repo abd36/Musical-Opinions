@@ -35,7 +35,9 @@ app.use('/api/secure', passport.authenticate('jwt', { session: false, failureRed
 
 mongoose.connect(mongoDB, {
 	useNewUrlParser: true,
-	useUnifiedTopology: true
+	useUnifiedTopology: true,
+	useFindAndModify: false,
+	useCreateIndex: true
 });
 
 // START THE SERVER
