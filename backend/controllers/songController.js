@@ -4,7 +4,7 @@ const Song = require("../models/songModel");
 exports.all = function(req, res){
   Song.find({}, function(err, songs) {
     if(err) {
-      res.send({error: err})
+      res.send({ error: err} )
     }
     else {
       res.send(songs);
@@ -34,7 +34,7 @@ exports.create = function(req, res) {
 };
 
 exports.topTenSongs = function(req, res) {
-  Song.find({}, {}, { sort: { averageRating: -1 } }, function(err, songs) {
+  Song.find({ hidden: false }, {}, { sort: { averageRating: -1 } }, function(err, songs) {
     if (err) {
       res.send("can't find songs - " + err);
     } else {
@@ -47,12 +47,12 @@ exports.toggleHide = function(req, res) {
   let id = req.params.id;
   Song.findOne({ _id: id }, function(err, song) {
     if (err) {
-      res.send("can't find song - " + err);
+      res.send({ error: err });
     } else {
       song.hidden = !song.hidden;
       song.save(function(err, toggledSong) {
         if (err) {
-          res.send("can't save toggled song - " + err);
+          res.send({ error: err });
         } else {
           res.send(toggledSong);
         }

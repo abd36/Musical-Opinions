@@ -37,4 +37,6 @@ export class HttpService {//TODO: group model methods together
 	postToggleAdmin(id: string) { return this.http.post<any>(`/api/secure/user/admin/${id}`, {}); }
 	
 	postToggleActive(id: string) { return this.http.post<any>(`/api/secure/user/active/${id}`, {}); }
+
+	postToggleHidden(id: string) { return this.http.post<any>(`/api/secure/song/hidden/${id}`, {}); }
 }

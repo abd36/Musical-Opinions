@@ -2,7 +2,9 @@
 <button (click)="logout()">logout</button><br><br>
 
 <p>{{ error }}</p>
+
 <form>
+    users:<br>
     <select name="username" [(ngModel)]="user.id">
         <option value="{{ user._id }}" *ngFor="let user of users" >
             {{ user.email }} - admin: {{ user.isAdmin }}, active: {{ user.isActive }}
@@ -12,5 +14,16 @@
     <button (click)="toggleAdmin()">toggle admin</button>
     <button (click)="toggleActive()">toggle active</button>
 </form>
+<br>
+<form>
+    songs:<br>
+    <select name="song" [(ngModel)]="song._id">
+        <option value="{{ song._id }}" *ngFor="let song of songs" >
+            {{ song.title }} - hidden: {{ song.hidden }}
+        </option>
+    </select>
+    <br>
+    <button (click)="toggleHidden()">toggle hidden</button>
+</form>
 
-<app-top-songs></app-top-songs>
+<app-top-songs [change]="change"></app-top-songs>

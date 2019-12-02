@@ -24,5 +24,6 @@ export class SecureService {
   toggleAdmin(id: string) { return this.http.postToggleAdmin(id); }
 
   toggleActive(id: string) { return this.http.postToggleActive(id); }
-
+  
+  toggleHidden(id: string) { return this.http.postToggleHidden(id); }
 }

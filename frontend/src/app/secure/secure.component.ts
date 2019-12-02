@@ -12,6 +12,7 @@ import { SecureService } from '../secure.service';
 })
 export class SecureComponent implements OnInit {
   songs: object;
+  change: boolean = true;
 
   constructor(
     private location: Location,
@@ -22,9 +23,9 @@ export class SecureComponent implements OnInit {
 
   ngOnInit() { this.openService.getTopTenSongs().subscribe(data => { this.songs = data; }); }
 
-  createReview() { this.router.navigate(["secure/createReview"]); }
+  createReview() { this.router.navigate(["secure/createReview"]); this.change = !this.change; }
 
-  createSong() { this.router.navigate(["secure/createSong"]); }
+  createSong() { this.router.navigate(["secure/createSong"]); this.change = !this.change; }
 
   logout() { this.router.navigate([""]); }
 }

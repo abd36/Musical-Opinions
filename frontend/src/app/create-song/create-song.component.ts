@@ -5,10 +5,7 @@ import { Router } from '@angular/router';
 import { SecureService } from '../secure.service';
 import { SecurityService } from '../security.service';
 
-import { User } from "../user";
 import { Song } from "../song";
-import { reject } from 'q';
-import { resolve } from 'url';
 
 @Component({
   selector: 'app-create-song',

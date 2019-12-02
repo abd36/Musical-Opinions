@@ -44,7 +44,7 @@ exports.createUser = async function (req, res) {
 exports.login = function(req, res){
   user = req.user;
   if (!user.isActive) {
-    res.send({ error: "user is inactive" })
+    res.send({ error: "user is inactive, contact achalya@uwo.ca for emotional support" })
   }
   else {
     const token = jwt.sign(user.toJSON(), secret.JWT_SECRET, { expiresIn: '45m' });
