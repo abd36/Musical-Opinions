@@ -5,6 +5,7 @@ import { SecureService } from '../secure.service';
 
 import { User } from "../user";
 import { Song } from "../song";
+import { DmcaTakeDownPolicy } from "../dmca-take-down-policy";
 
 @Component({
   selector: 'app-admin',
@@ -17,7 +18,11 @@ export class AdminComponent implements OnInit {
   songs: Object;
   song = new Song("", "", "", "", "", "", 0, 0, 0, 0, 0, false, false);
   error: string = "";
-  change: boolean = true;
+  DMCATDFlag: boolean = false;
+  DMCATDCreateFlag: boolean = false;
+  DMCATDUpdateFlag: boolean = false;
+  dmcaTakeDown = new DmcaTakeDownPolicy("", "", "");
+  DMCATDResult: string = "";
 
   constructor(private router: Router, private secureService: SecureService) { }
 
@@ -25,6 +30,41 @@ export class AdminComponent implements OnInit {
     this.populateUsers();
     this.populateSongs();
   }
+
+  createOrUpdateDMCATD() {
+    if (this.DMCATDCreateFlag) this.createDMCATD();
+    else this.updateDMCATD();
+  }
+
+  createDMCATD() {
+    this.secureService.createDmcaTakeDownPolicy(this.dmcaTakeDown).subscribe(data => {
+      console.log(data);
+      if (!data.error) {
+        this.DMCATDFlag = false;
+        this.DMCATDResult = "created a new dmca and takedown policy";
+      } else {
+        this.DMCATDResult = data.error._message;
+      }
+    });
+  }
+
+  updateDMCATD() {
+    
+  }
+
+  createToggleDMCATD() {
+    this.DMCATDFlag = true;
+    this.DMCATDCreateFlag = true;
+    this.DMCATDUpdateFlag = false;
+  }
+
+  updateToggleDMCATD() {
+    this.DMCATDFlag = true;
+    this.DMCATDUpdateFlag = true;
+    this.DMCATDCreateFlag = false;
+  }
+
+  
 
   toggleAdmin() {
     if (this.user.id != "") {
@@ -49,7 +89,6 @@ export class AdminComponent implements OnInit {
       this.secureService.toggleHidden(this.song._id).subscribe(data => {
         if (!data.error) {
           this.populateSongs();
-          this.change = !this.change;
         }
         else this.error = data.error;
       });

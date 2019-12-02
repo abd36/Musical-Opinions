@@ -5,6 +5,7 @@ import { HttpService } from "./http.service"
 import { Song } from "./song";
 import { Review } from "./review";
 import { User } from './user';
+import { DmcaTakeDownPolicy } from './dmca-take-down-policy';
 
 @Injectable({
   providedIn: 'root'
@@ -28,4 +29,6 @@ export class SecureService {
   toggleActive(id: string) { return this.http.postToggleActive(id); }
   
   toggleHidden(id: string) { return this.http.postToggleHidden(id); }
+
+  createDmcaTakeDownPolicy(policy: DmcaTakeDownPolicy) { return this.http.postDmcaTakeDown(policy); }
 }

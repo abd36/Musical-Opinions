@@ -4,7 +4,8 @@
 <p>{{ error }}</p>
 
 <form>
-    users:<br>
+    users:
+    <br>
     <select name="username" [(ngModel)]="user.id">
         <option value="{{ user._id }}" *ngFor="let user of users" >
             {{ user.email }} - admin: {{ user.isAdmin }}, active: {{ user.isActive }}
@@ -16,7 +17,8 @@
 </form>
 <br>
 <form>
-    songs:<br>
+    songs:
+    <br>
     <select name="song" [(ngModel)]="song._id">
         <option value="{{ song._id }}" *ngFor="let song of songs" >
             {{ song.title }} - hidden: {{ song.hidden }}
@@ -26,4 +28,23 @@
     <button (click)="toggleHidden()">toggle hidden</button>
 </form>
 
-<app-top-songs [change]="change"></app-top-songs>
+<br><br>
+
+<p>dmca and takedown policy</p>
+<button (click)="createToggleDMCATD()">create</button>
+<button (click)="updateToggleDMCATD()">update</button>
+<!-- pressing either of these buttons shows the form below -->
+<div *ngIf="DMCATDFlag">
+    <form (ngSubmit)="createOrUpdateDMCATD()">
+        dmca:
+        <br>
+        <textarea [(ngModel)]="dmcaTakeDown.dmca" name="dmca" cols="40" rows="15"></textarea>
+        <br>
+        takedown:
+        <br>
+        <textarea [(ngModel)]="dmcaTakeDown.takeDown" name="takeDown" cols="40" rows="15"></textarea>
+        <br>
+        <input type="submit" value="submit"/>
+    </form>
+</div>
+<p>{{ DMCATDResult }}</p>
