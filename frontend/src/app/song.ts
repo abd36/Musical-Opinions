@@ -6,7 +6,7 @@ export class Song {
     public album: String,
     public comment: String,
     public genre: String,
-    public year: String,
+    public year: Number,
     public numberOfRatings: Number,
     public sumOfRating: Number,
     public averageRating: Number,

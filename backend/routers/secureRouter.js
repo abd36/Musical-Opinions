@@ -13,8 +13,9 @@ router.post('/user/admin/:id', userController.toggleAdmin);
 router.post('/user/active/:id', userController.toggleActive);
 
 //song routes
-router.post('/song/create', songController.createSong);
+router.post('/song/create', songController.create);
 router.post('/song/hidden/:id', songController.toggleHide);
 router.post('/song/copyright/:id', songController.toggleCopyRight);
+router.get('/song/all', songController.all);
 
 module.exports = router;

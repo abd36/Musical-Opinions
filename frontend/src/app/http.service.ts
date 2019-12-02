@@ -3,24 +3,19 @@ import { HttpClient } from '@angular/common/http';
 
 import { Song } from "./song";
 import { User } from "./user";
+import { Review } from "./review";
 
 @Injectable({
 	providedIn: 'root'
 })
-export class HttpService {
+export class HttpService {//TODO: group model methods together
 	constructor(private http: HttpClient) { }
 	
-	getTopTenSongs() {
-		return this.http.get<any>('/api/open/song/top');
-	}
+	getTopTenSongs() { return this.http.get<any>('/api/open/song/top'); }
 	
-	getMostRecentReview(id: string) {
-		return this.http.get<any>(`/api/open/review/most-recent/song/${id}`);
-	}
+	getMostRecentReview(id: string) { return this.http.get<any>(`/api/open/review/most-recent/song/${id}`); }
 	
-	getAllReviews(id: string) {
-		return this.http.get<any>(`/api/open/review/song/${id}`);
-	}
+	getAllReviews(id: string) { return this.http.get<any>(`/api/open/review/song/${id}`); }
 	
 	putLogin(user: User) {
 		//TODO: remove these
@@ -28,8 +23,12 @@ export class HttpService {
 		// return this.http.post<any>('/open/user/login', user, options);
 		return this.http.put<any>('/api/open/user/login', user);
 	}
+	
+	postCreateUser(user: User) { return this.http.post<any>('/api/open/user/create', user); }
+	
+	getAllSongs(){ return this.http.get<any>('/api/secure/song/all'); }
 
-	postCreateUser(user: User) {
-		return this.http.post<any>('/api/open/user/create', user);
-	}
+	postReview(review: Review) { return this.http.post<any>('api/secure/review/create', review); }
+
+	postSong(song: Song) { return this.http.post<any>('api/secure/song/create', song); }
 }

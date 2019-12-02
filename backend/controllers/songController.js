@@ -1,7 +1,18 @@
 const mongoose = require("mongoose");
 const Song = require("../models/songModel");
 
-exports.createSong = function(req, res) {
+exports.all = function(req, res){
+  Song.find({}, function(err, songs) {
+    if(err) {
+      res.send({error: err})
+    }
+    else {
+      res.send(songs);
+    }
+  })
+}
+
+exports.create = function(req, res) {
   let song = new Song({
     _id: mongoose.Types.ObjectId(),
     title: req.body.title,
@@ -16,18 +27,18 @@ exports.createSong = function(req, res) {
 
   song.save(function(err, song) {
     if (err) {
-      res.send("can't save song - " + err)
+      res.send({ error: err });
     }
     res.send(song);
   });
 };
 
 exports.topTenSongs = function(req, res) {
-  Song.find({}, {}, { sort: { numOfRatings: -1 } }, function(err, songs) {
+  Song.find({}, {}, { sort: { averageRating: -1 } }, function(err, songs) {
     if (err) {
       res.send("can't find songs - " + err);
     } else {
-      res.send(songs.slice(0, 9));
+      res.send(songs.slice(0, 10));
     }
   });
 };

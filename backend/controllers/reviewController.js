@@ -12,12 +12,12 @@ exports.createReview = function(req, res) {
 
 	review.save(function(reviewErr, review) {
 		if (reviewErr) {
-			res.send("can't save review - " + reviewErr);
+			res.send({ error: reviewErr });
 		}
 		else {
 			Song.findOne({_id: songId}, function(songErr, song) {
 				if (songErr) {
-					res.send("can't find song - " + songErr);
+					res.send({ error: songErr });
 				}
 				else {
 					song.numberOfRatings =  song.numberOfRatings + 1;
@@ -26,7 +26,7 @@ exports.createReview = function(req, res) {
 
 					song.save(function(songErr2){
 						if (songErr2) {
-							res.send("can't save updated song - " + songErr2);
+							res.send({ error: songErr2 });
 						}
 						else {
 							res.send(review);

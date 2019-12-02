@@ -30,7 +30,6 @@ export class OpenComponent implements OnInit {
 				// 	this.router.navigate(["auth/admin"]);
 			}
 			else {
-				console.log(data.error);
 				this.error = data.error;
 			}
 		},
@@ -40,7 +39,6 @@ export class OpenComponent implements OnInit {
 
 	createUser() {
 		this.openService.createUser(this.newUserModel).subscribe(data => {
-			console.log(data);
 			if (!data.error) {
 				localStorage.setItem("token", data.token);
 				this.router.navigate(["secure"]);

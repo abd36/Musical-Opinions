@@ -15,6 +15,8 @@ import {SecurityService} from './security.service'
 import {SecurityGuard} from './security.guard'
 import {HttpService} from './http.service';
 import { TopSongsComponent } from './top-songs/top-songs.component';
+import { CreateReviewComponent } from './create-review/create-review.component';
+import { CreateSongComponent } from './create-song/create-song.component';
 
 
 @NgModule({
@@ -24,6 +26,8 @@ import { TopSongsComponent } from './top-songs/top-songs.component';
     SecureComponent,
     SongInfoComponent,
     TopSongsComponent,
+    CreateReviewComponent,
+    CreateSongComponent,
   ],
   imports: [
     BrowserModule,
