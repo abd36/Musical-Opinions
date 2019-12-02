@@ -31,7 +31,7 @@ app.use(passport.session());
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 app.use('/api/open', openRouter);
-app.use('/api/secure', passport.authenticate('jwt', { session: false }), secureRouter);
+app.use('/api/secure', passport.authenticate('jwt', { session: false, failureRedirect: '/api/open/error' }), secureRouter);
 
 mongoose.connect(mongoDB, {
 	useNewUrlParser: true,

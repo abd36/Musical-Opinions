@@ -17,6 +17,7 @@ import {HttpService} from './http.service';
 import { TopSongsComponent } from './top-songs/top-songs.component';
 import { CreateReviewComponent } from './create-review/create-review.component';
 import { CreateSongComponent } from './create-song/create-song.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { CreateSongComponent } from './create-song/create-song.component';
     TopSongsComponent,
     CreateReviewComponent,
     CreateSongComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

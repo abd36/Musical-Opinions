@@ -5,6 +5,8 @@ const reviewController = require('../controllers/reviewController');
 const userController = require('../controllers/userController');
 const passport = require('passport')
 
+router.get('/error', (req, res) => res.send({ error: "authentication failed, or token is expired" }));
+
 //user routes
 router.post('/user/create', userController.createUser);
 router.put('/user/login', passport.authenticate('local', { session: false, failureRedirect: '/api/open/user/login/error' }),  userController.login);

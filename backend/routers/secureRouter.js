@@ -11,6 +11,7 @@ router.post('/review/create', reviewController.createReview);
 //user routes
 router.post('/user/admin/:id', userController.toggleAdmin);
 router.post('/user/active/:id', userController.toggleActive);
+router.get('/user/all', userController.all);
 
 //song routes
 router.post('/song/create', songController.create);

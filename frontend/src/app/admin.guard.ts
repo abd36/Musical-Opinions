@@ -7,17 +7,17 @@ import {SecurityService} from './security.service'
 @Injectable({
   providedIn: 'root'
 })
-export class SecurityGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
   constructor(private securityService: SecurityService, private router: Router) {
   }
 
   canActivate(): boolean {
-    if (this.securityService.loggedIn()) {
+    if (this.securityService.checkAdmin()) {
       return true;
     }
     else {
       this.router.navigate(['']);
-      return false;
+      return false
     }
   }
 }

@@ -31,4 +31,10 @@ export class HttpService {//TODO: group model methods together
 	postReview(review: Review) { return this.http.post<any>('api/secure/review/create', review); }
 
 	postSong(song: Song) { return this.http.post<any>('api/secure/song/create', song); }
+
+	getAllUsers() { return this.http.get<any>('/api/secure/user/all'); }
+
+	postToggleAdmin(id: string) { return this.http.post<any>(`/api/secure/user/admin/${id}`, {}); }
+	
+	postToggleActive(id: string) { return this.http.post<any>(`/api/secure/user/active/${id}`, {}); }
 }

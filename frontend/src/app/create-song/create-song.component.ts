@@ -46,6 +46,6 @@ export class CreateSongComponent implements OnInit {
     this.submit().then(res => this.router.navigate(["secure/createReview"], { state: { data: this.song } }));
   }
 
-  cancel() { this.location.back(); }
+  cancel() { this.router.navigate(["secure"]); }
 
 }

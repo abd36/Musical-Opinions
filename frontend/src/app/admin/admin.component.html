@@ -1,0 +1,16 @@
+<h2>admin</h2>
+<button (click)="logout()">logout</button><br><br>
+
+<p>{{ error }}</p>
+<form>
+    <select name="username" [(ngModel)]="user.id">
+        <option value="{{ user._id }}" *ngFor="let user of users" >
+            {{ user.email }} - admin: {{ user.isAdmin }}, active: {{ user.isActive }}
+        </option>
+    </select>
+    <br>
+    <button (click)="toggleAdmin()">toggle admin</button>
+    <button (click)="toggleActive()">toggle active</button>
+</form>
+
+<app-top-songs></app-top-songs>
