@@ -6,6 +6,7 @@ import { User } from "./user";
 import { Review } from "./review";
 import { DmcaTakeDownPolicy } from './dmca-take-down-policy';
 import { SecurityPrivacyPolicy } from './security-privacy-policy';
+import { Log } from "./log";
 
 @Injectable({
 	providedIn: 'root'
@@ -64,6 +65,10 @@ export class HttpService {//TODO: group model methods together
 		return this.http.post<any>(`/api/secure/user/active/${id}`, {});
 	}
 
+	postToggleCopyright(id: string) {
+		return this.http.post<any>(`/api/secure/song/copyright/${id}`, {});
+	}
+
 	postToggleHidden(id: string) {
 		return this.http.post<any>(`/api/secure/song/hidden/${id}`, {});
 	}
@@ -90,5 +95,13 @@ export class HttpService {//TODO: group model methods together
 
 	postSecurityPrivacyUpdate(policy: SecurityPrivacyPolicy) {
 		return this.http.post<any>(`/api/secure/securityPrivacy/update/${policy._id}`, policy);
+	}
+
+	getAllLogs() {
+		return this.http.get<any>('/api/secure/log');
+	}
+
+	postLog(log: Log) {
+		return this.http.post<any>('/api/secure/log/create', log);
 	}
 }

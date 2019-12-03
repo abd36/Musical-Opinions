@@ -6,6 +6,7 @@ const reviewController = require('../controllers/reviewController');
 const userController = require('../controllers/userController');
 const dmcaTakeDownController = require('../controllers/dmcaTakeDownController');
 const securityPrivacyController = require('../controllers/securityPrivacyController');
+const logController = require('../controllers/logController');
 
 //review routes
 router.post('/review/create', reviewController.createReview);
@@ -31,5 +32,9 @@ router.post('/dmcaTakeDown/update/:id', dmcaTakeDownController.update);
 router.post('/securityPrivacy/create', securityPrivacyController.create);
 router.get('/securityPrivacy', securityPrivacyController.get);
 router.post('/securityPrivacy/update/:id', securityPrivacyController.update);
+
+//log routes
+router.post('/log/create', logController.create)
+router.get('/log', logController.getAll)
 
 module.exports = router;

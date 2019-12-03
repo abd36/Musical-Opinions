@@ -24,7 +24,11 @@ export class OpenComponent implements OnInit {
 		private router: Router
 		) { }
 	
-	ngOnInit() {}
+	ngOnInit() {
+		if (history.state.data) {
+			this.error = history.state.data;
+		}
+	}
 
 	navToDmcaTakeDownPolicy() { this.router.navigate(['policy/dmcaTakeDown']); }
 	navToSecurityPrivacyPolicy() { this.router.navigate(['policy/securityPrivacy']); }

@@ -1,6 +1,8 @@
 <h2>admin</h2>
 <button (click)="logout()">logout</button><br><br>
 
+<button (click)='router.navigate(["log"]);'>dmca requests/notices/disputes</button>
+
 <p>{{ error }}</p>
 
 <form>
@@ -21,10 +23,11 @@
     <br>
     <select name="song" [(ngModel)]="song._id">
         <option value="{{ song._id }}" *ngFor="let song of songs" >
-            {{ song.title }} - hidden: {{ song.hidden }}
+            {{ song.title }} - copyright: {{ song.copyRightStrike }}, hidden: {{ song.hidden }}
         </option>
     </select>
     <br>
+    <button (click)="toggleCopyright()">toggle copyright</button>
     <button (click)="toggleHidden()">toggle hidden</button>
 </form>
 

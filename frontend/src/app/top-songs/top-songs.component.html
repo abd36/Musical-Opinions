@@ -1,9 +1,7 @@
 <h3>top songs by average rating</h3>
 <ol>
 	<li *ngFor="let song of songs">
-		<!-- <div *ngIf="song.hidden"> -->
-			<p (click)="song.showInfo = !song.showInfo">{{ song.title }}</p>
-			<app-song-info *ngIf="song.showInfo" [song]="song"></app-song-info>
-		<!-- </div> -->
+		<p (click)="song.showInfo = !song.showInfo">{{ song.title }}</p>
+		<app-song-info *ngIf="song.showInfo" [song]="song"></app-song-info>
 	</li>
 </ol>

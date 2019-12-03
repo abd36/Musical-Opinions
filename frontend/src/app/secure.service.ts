@@ -7,6 +7,7 @@ import { Review } from "./review";
 import { User } from './user';
 import { DmcaTakeDownPolicy } from './dmca-take-down-policy';
 import { SecurityPrivacyPolicy } from './security-privacy-policy';
+import { Log } from "./log";
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,8 @@ export class SecureService {
 
   toggleActive(id: string) { return this.http.postToggleActive(id); }
   
+  toggleCopyright(id: string) { return this.http.postToggleCopyright(id); }
+  
   toggleHidden(id: string) { return this.http.postToggleHidden(id); }
 
   createDmcaTakeDownPolicy(policy: DmcaTakeDownPolicy) { return this.http.postDmcaTakeDown(policy); }
@@ -42,4 +45,8 @@ export class SecureService {
   getSecurityPrivacyPolicy() { return this.http.getSecurityPrivacy(); }
 
   updateSecurityPrivacyPolicy(policy: SecurityPrivacyPolicy) { return this.http.postSecurityPrivacyUpdate(policy); }
+
+  getAllLogs() { return this.http.getAllLogs(); }
+
+  postLog(log: Log) { return this.http.postLog(log); }
 }

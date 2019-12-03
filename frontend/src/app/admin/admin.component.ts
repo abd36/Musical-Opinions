@@ -101,7 +101,7 @@ export class AdminComponent implements OnInit {
         this.DMCATDFlag = false;
         this.DMCATDResult = "created a new dmca and takedown policy";
       } else {
-        this.DMCATDResult = data.error._message;
+        this.DMCATDResult = data.error;
       }
     });
   }
@@ -111,7 +111,7 @@ export class AdminComponent implements OnInit {
       if (!data.error) {
         this.DMCATDFlag = false;
         this.DMCATDResult = "updated dmca and takedown policy";
-      } else this.DMCATDResult = data.error._message;
+      } else this.DMCATDResult = data.error;
     });
   }
 
@@ -154,6 +154,17 @@ export class AdminComponent implements OnInit {
     if (this.user.id != "") {
       this.secureService.toggleActive(this.user.id).subscribe(data => {
         if (!data.error) this.populateUsers();
+        else this.error = data.error;
+      });
+    }
+  }
+
+  toggleCopyright() {
+    if (this.song._id != "") {
+      this.secureService.toggleCopyright(this.song._id).subscribe(data => {
+        if (!data.error) {
+          this.populateSongs();
+        }
         else this.error = data.error;
       });
     }

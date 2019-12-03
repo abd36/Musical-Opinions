@@ -13,7 +13,7 @@ exports.all = function(req, res){
 }
 
 exports.allButHidden = function(req, res){
-  Song.find({ hidden: false }, {}, {}, function(err, songs) {
+  Song.find({ hidden: false, copyRightStrike: false }, {}, {}, function(err, songs) {
     if(err) {
       res.send({ error: err } )
     }
@@ -46,7 +46,7 @@ exports.create = function(req, res) {
 };
 
 exports.topTenSongs = function(req, res) {
-  Song.find({ hidden: false }, {}, { sort: { averageRating: -1 } }, function(err, songs) {
+  Song.find({ hidden: false, copyRightStrike: false }, {}, { sort: { averageRating: -1 } }, function(err, songs) {
     if (err) {
       res.send("can't find songs - " + err);
     } else {
