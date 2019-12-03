@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
 import { SecureService } from '../secure.service';
@@ -21,7 +20,6 @@ export class CreateReviewComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private location: Location,
     private secureService: SecureService,
     private securityService: SecurityService
     ) { }

@@ -23,6 +23,9 @@ export class SecureComponent implements OnInit {
 
   ngOnInit() { this.openService.getTopTenSongs().subscribe(data => { this.songs = data; }); }
 
+  navToDmcaTakeDownPolicy() { this.router.navigate(['policy/dmcaTakeDown']); }
+	navToSecurityPrivacyPolicy() { this.router.navigate(['policy/securityPrivacy']); }
+
   createReview() { this.router.navigate(["secure/createReview"]); this.change = !this.change; }
 
   createSong() { this.router.navigate(["secure/createSong"]); this.change = !this.change; }

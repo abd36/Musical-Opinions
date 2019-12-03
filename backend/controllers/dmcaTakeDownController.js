@@ -1,7 +1,6 @@
 const DMCATakeDown = require('../models/dmcaTakeDownModel');
 
 exports.create = (req, res) => {
-    console.log(req.body);
     dmcaTakeDown = new DMCATakeDown({
         dmca: req.body.dmca,
         takeDown: req.body.takeDown

@@ -6,6 +6,7 @@ import { SecureService } from '../secure.service';
 import { User } from "../user";
 import { Song } from "../song";
 import { DmcaTakeDownPolicy } from "../dmca-take-down-policy";
+import { SecurityPrivacyPolicy } from "../security-privacy-policy";
 
 @Component({
   selector: 'app-admin',
@@ -18,17 +19,75 @@ export class AdminComponent implements OnInit {
   songs: Object;
   song = new Song("", "", "", "", "", "", 0, 0, 0, 0, 0, false, false);
   error: string = "";
+
   DMCATDFlag: boolean = false;
   DMCATDCreateFlag: boolean = false;
   DMCATDUpdateFlag: boolean = false;
   dmcaTakeDown = new DmcaTakeDownPolicy("", "", "");
   DMCATDResult: string = "";
 
+  securityPrivacyFlag: boolean = false;
+  securityPrivacyCreateFlag: boolean = false;
+  securityPrivacyUpdateFlag: boolean = false;
+  securityPrivacy = new SecurityPrivacyPolicy("", "", "");
+  securityPrivacyResult: string = "";
+
   constructor(private router: Router, private secureService: SecureService) { }
 
   ngOnInit() {
     this.populateUsers();
     this.populateSongs();
+  }
+
+  createOrUpdateSecurityPrivacy() {
+    if (this.securityPrivacyCreateFlag) this.createSecurityPrivacy();
+    else this.updateSecurityPrivacy();
+  }
+
+  createSecurityPrivacy() {
+    this.secureService.createSecurityPrivacyPolicy(this.securityPrivacy).subscribe(data => {
+      if (!data.error) {
+        this.securityPrivacyFlag = false;
+        this.securityPrivacyResult = "created a new security and privacy policy";
+      } else {
+        this.securityPrivacyResult = data.error._message;
+      }
+    });
+  }
+
+  updateSecurityPrivacy() {
+    this.secureService.updateSecurityPrivacyPolicy(this.securityPrivacy).subscribe(data => {
+      if (!data.error) {
+        this.securityPrivacyFlag = false;
+        this.securityPrivacyResult = "updated security and privacy policy";
+      } else this.securityPrivacyResult = data.error._message;
+    });
+  }
+
+  getSecurityPrivacy() {
+    this.secureService.getSecurityPrivacyPolicy().subscribe(data => {
+      if (!data.error) {
+        this.securityPrivacy = data;
+      } else this.securityPrivacyResult = data.error;
+    });
+  }
+
+  createToggleSecurityPrivacy() {
+    this.securityPrivacyFlag = true;
+    this.securityPrivacyCreateFlag = true;
+    this.securityPrivacyUpdateFlag = false;
+    this.securityPrivacy._id = "";
+    this.securityPrivacy.privacy = "";
+    this.securityPrivacy.security = "";
+    this.securityPrivacyResult = "";
+  }
+
+  updateToggleSecurityPrivacy() {
+    this.securityPrivacyFlag = true;
+    this.securityPrivacyUpdateFlag = true;
+    this.securityPrivacyCreateFlag = false;
+    this.getSecurityPrivacy();
+    this.securityPrivacyResult = "";
   }
 
   createOrUpdateDMCATD() {
@@ -38,7 +97,6 @@ export class AdminComponent implements OnInit {
 
   createDMCATD() {
     this.secureService.createDmcaTakeDownPolicy(this.dmcaTakeDown).subscribe(data => {
-      console.log(data);
       if (!data.error) {
         this.DMCATDFlag = false;
         this.DMCATDResult = "created a new dmca and takedown policy";
@@ -49,22 +107,39 @@ export class AdminComponent implements OnInit {
   }
 
   updateDMCATD() {
-    
+    this.secureService.updateDmcaTakeDownPolicy(this.dmcaTakeDown).subscribe(data => {
+      if (!data.error) {
+        this.DMCATDFlag = false;
+        this.DMCATDResult = "updated dmca and takedown policy";
+      } else this.DMCATDResult = data.error._message;
+    });
+  }
+
+  getDMCATD() {
+    this.secureService.getDmcaTakeDownPoliciy().subscribe(data => {
+      if (!data.error) {
+        this.dmcaTakeDown = data;
+      } else this.DMCATDResult = data.error;
+    });
   }
 
   createToggleDMCATD() {
     this.DMCATDFlag = true;
     this.DMCATDCreateFlag = true;
     this.DMCATDUpdateFlag = false;
+    this.dmcaTakeDown._id = "";
+    this.dmcaTakeDown.dmca = "";
+    this.dmcaTakeDown.takeDown = "";
+    this.DMCATDResult = "";
   }
 
   updateToggleDMCATD() {
     this.DMCATDFlag = true;
     this.DMCATDUpdateFlag = true;
     this.DMCATDCreateFlag = false;
+    this.getDMCATD();
+    this.DMCATDResult = "";
   }
-
-  
 
   toggleAdmin() {
     if (this.user.id != "") {

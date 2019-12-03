@@ -45,6 +45,29 @@
         <textarea [(ngModel)]="dmcaTakeDown.takeDown" name="takeDown" cols="40" rows="15"></textarea>
         <br>
         <input type="submit" value="submit"/>
+        <button (click)="DMCATDFlag = false;">cancel</button>
     </form>
 </div>
 <p>{{ DMCATDResult }}</p>
+
+<p>---</p>
+
+<p>security and privacy policy</p>
+<button (click)="createToggleSecurityPrivacy()">create</button>
+<button (click)="updateToggleSecurityPrivacy()">update</button>
+<!-- pressing either of these buttons shows the form below -->
+<div *ngIf="securityPrivacyFlag">
+    <form (ngSubmit)="createOrUpdateSecurityPrivacy()">
+        security:
+        <br>
+        <textarea [(ngModel)]="securityPrivacy.security" name="security" cols="40" rows="15"></textarea>
+        <br>
+        privacy:
+        <br>
+        <textarea [(ngModel)]="securityPrivacy.privacy" name="privacy" cols="40" rows="15"></textarea>
+        <br>
+        <input type="submit" value="submit"/>
+        <button (click)="securityPrivacyFlag = false;">cancel</button>
+    </form>
+</div>
+<p>{{ securityPrivacyResult }}</p>

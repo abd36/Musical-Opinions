@@ -6,6 +6,7 @@ import { Song } from "./song";
 import { Review } from "./review";
 import { User } from './user';
 import { DmcaTakeDownPolicy } from './dmca-take-down-policy';
+import { SecurityPrivacyPolicy } from './security-privacy-policy';
 
 @Injectable({
   providedIn: 'root'
@@ -31,4 +32,14 @@ export class SecureService {
   toggleHidden(id: string) { return this.http.postToggleHidden(id); }
 
   createDmcaTakeDownPolicy(policy: DmcaTakeDownPolicy) { return this.http.postDmcaTakeDown(policy); }
+
+  getDmcaTakeDownPoliciy() { return this.http.getDmcaTakeDown(); }
+
+  updateDmcaTakeDownPolicy(policy: DmcaTakeDownPolicy) { return this.http.postDmcaTakeDownUpdate(policy); }
+
+  createSecurityPrivacyPolicy(policy: SecurityPrivacyPolicy) { return this.http.postSecurityPrivacy(policy); }
+
+  getSecurityPrivacyPolicy() { return this.http.getSecurityPrivacy(); }
+
+  updateSecurityPrivacyPolicy(policy: SecurityPrivacyPolicy) { return this.http.postSecurityPrivacyUpdate(policy); }
 }

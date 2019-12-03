@@ -18,9 +18,16 @@ export class OpenComponent implements OnInit {
 	userModel = new User("", "mine@mine.com", "test", false, true); //TODO: remove the email and hello, replace with empty string when not dev
 	newUserModel = new User("", "", "", false, true);
 	
-	constructor(private securityService: SecurityService, private openService: OpenService, private router: Router) { }
+	constructor(
+		private securityService: SecurityService,
+		private openService: OpenService,
+		private router: Router
+		) { }
 	
 	ngOnInit() {}
+
+	navToDmcaTakeDownPolicy() { this.router.navigate(['policy/dmcaTakeDown']); }
+	navToSecurityPrivacyPolicy() { this.router.navigate(['policy/securityPrivacy']); }
 	
 	login() {
 		this.openService.login(this.userModel).subscribe(data => {

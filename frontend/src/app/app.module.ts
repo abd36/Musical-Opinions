@@ -18,6 +18,9 @@ import { TopSongsComponent } from './top-songs/top-songs.component';
 import { CreateReviewComponent } from './create-review/create-review.component';
 import { CreateSongComponent } from './create-song/create-song.component';
 import { AdminComponent } from './admin/admin.component';
+import { DmcaTakeDownPolicyComponent } from './dmca-take-down-policy/dmca-take-down-policy.component';
+import { SecurityPrivacyPolicyComponent } from './security-privacy-policy/security-privacy-policy.component';
+import { LogComponent } from './log/log.component';
 
 
 @NgModule({
@@ -30,6 +33,9 @@ import { AdminComponent } from './admin/admin.component';
     CreateReviewComponent,
     CreateSongComponent,
     AdminComponent,
+    DmcaTakeDownPolicyComponent,
+    SecurityPrivacyPolicyComponent,
+    LogComponent,
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,7 @@ import { Song } from "./song";
 import { User } from "./user";
 import { Review } from "./review";
 import { DmcaTakeDownPolicy } from './dmca-take-down-policy';
+import { SecurityPrivacyPolicy } from './security-privacy-policy';
 
 @Injectable({
 	providedIn: 'root'
@@ -69,5 +70,25 @@ export class HttpService {//TODO: group model methods together
 
 	postDmcaTakeDown(policy: DmcaTakeDownPolicy) {
 		return this.http.post<any>('/api/secure/dmcaTakeDown/create', policy);
+	}
+
+	getDmcaTakeDown() {
+		return this.http.get<any>('/api/secure/dmcaTakeDown');
+	}
+
+	postDmcaTakeDownUpdate(policy: DmcaTakeDownPolicy) {
+		return this.http.post<any>(`/api/secure/dmcaTakeDown/update/${policy._id}`, policy);
+	}
+
+	postSecurityPrivacy(policy: SecurityPrivacyPolicy) {
+		return this.http.post<any>('/api/secure/securityPrivacy/create', policy);
+	}
+
+	getSecurityPrivacy() {
+		return this.http.get<any>('/api/secure/securityPrivacy');
+	}
+
+	postSecurityPrivacyUpdate(policy: SecurityPrivacyPolicy) {
+		return this.http.post<any>(`/api/secure/securityPrivacy/update/${policy._id}`, policy);
 	}
 }
