@@ -1,4 +1,9 @@
 <h3>log requests/notices/disputes</h3>
+
+<button (click)="instructions = !instructions">instructions</button>
+<app-dmca-instructions *ngIf="instructions"></app-dmca-instructions>
+<br><br>
+
 <form (ngSubmit)="createLog()">
     <label for="type">type:</label>
     <select name="type" [(ngModel)]="log.type">

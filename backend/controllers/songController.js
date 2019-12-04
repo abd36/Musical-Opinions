@@ -1,5 +1,24 @@
 const mongoose = require("mongoose");
 const Song = require("../models/songModel");
+const Fuse = require("fuse.js");
+
+exports.search = function(req, res) {
+  Song.find({ hidden: false, copyRightStrike: false }, function(err, songs) {
+    if (err) res.send({ error: err });
+    else {
+      res.send(new Fuse(songs, {
+        shouldSort: true,
+        tokenize: true,
+        threshold: 0.3,
+        location: 0,
+        distance: 30,
+        maxPatternLength: 30,
+        minMatchCharLength: 1,
+        keys: ["title", "artist", "comment", "genre", "year", "track"]
+      }).search(req.params.query));
+    }
+  });
+};
 
 exports.all = function(req, res){
   Song.find({}, function(err, songs) {

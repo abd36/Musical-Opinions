@@ -15,7 +15,7 @@ import { User } from "../user";
 export class OpenComponent implements OnInit {
 	error: string;
 	change: boolean = true;
-	userModel = new User("", "mine@mine.com", "test", false, true); //TODO: remove the email and hello, replace with empty string when not dev
+	userModel = new User("", "", "", false, true);
 	newUserModel = new User("", "", "", false, true);
 	
 	constructor(

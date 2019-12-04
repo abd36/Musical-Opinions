@@ -21,6 +21,8 @@ import { AdminComponent } from './admin/admin.component';
 import { DmcaTakeDownPolicyComponent } from './dmca-take-down-policy/dmca-take-down-policy.component';
 import { SecurityPrivacyPolicyComponent } from './security-privacy-policy/security-privacy-policy.component';
 import { LogComponent } from './log/log.component';
+import { BrowseSongsComponent } from './browse-songs/browse-songs.component';
+import { DmcaInstructionsComponent } from './dmca-instructions/dmca-instructions.component';
 
 
 @NgModule({
@@ -36,6 +38,8 @@ import { LogComponent } from './log/log.component';
     DmcaTakeDownPolicyComponent,
     SecurityPrivacyPolicyComponent,
     LogComponent,
+    BrowseSongsComponent,
+    DmcaInstructionsComponent,
   ],
   imports: [
     BrowserModule,

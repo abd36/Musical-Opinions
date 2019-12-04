@@ -11,7 +11,7 @@ import { Log } from "./log";
 @Injectable({
 	providedIn: 'root'
 })
-export class HttpService {//TODO: group model methods together
+export class HttpService {
 	constructor(private http: HttpClient) { }
 	
 	getTopTenSongs() {
@@ -27,9 +27,6 @@ export class HttpService {//TODO: group model methods together
 	}
 	
 	putLogin(user: User) {
-		//TODO: remove these
-		// const options = {responseType: 'text' as 'json'};
-		// return this.http.post<any>('/open/user/login', user, options);
 		return this.http.put<any>('/api/open/user/login', user);
 	}
 	
@@ -86,7 +83,7 @@ export class HttpService {//TODO: group model methods together
 	}
 
 	postSecurityPrivacy(policy: SecurityPrivacyPolicy) {
-		return this.http.post<any>('/api/secure/securityPrivacy/create', policy);
+		return this.http.post<any>('/api/secure/securityPrivacy', policy);
 	}
 
 	getSecurityPrivacy() {
@@ -102,6 +99,10 @@ export class HttpService {//TODO: group model methods together
 	}
 
 	postLog(log: Log) {
-		return this.http.post<any>('/api/secure/log/create', log);
+		return this.http.post<any>('/api/secure/log', log);
+	}
+
+	getSongs(query: string) {
+		return this.http.get<any>(`api/open/song/search/${query}`);
 	}
 }

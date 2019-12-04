@@ -30,4 +30,8 @@ export class OpenService {
 	createUser(user: User) {
 		return this.http.postCreateUser(user);
 	}
+
+	search(query: string) {
+		return this.http.getSongs(query);
+	}
 }

@@ -46,7 +46,7 @@ exports.login = function(req, res){
     res.send({ error: "user is inactive, contact achalya@uwo.ca for emotional support" })
   }
   else {
-    const token = jwt.sign(user.toJSON(), secret.JWT_SECRET, { expiresIn: '1s' });
+    const token = jwt.sign(user.toJSON(), secret.JWT_SECRET, { expiresIn: '45m' });
     const {iat, exp} = jwt.decode(token);
     res.send({ iat, exp, token });
   }

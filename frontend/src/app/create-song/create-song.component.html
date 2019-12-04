@@ -1,10 +1,10 @@
 <h3>add another song to the pile</h3>
 
-<form novalidate (ngSubmit)="saveSong()">
+<form ngNativeValidate (ngSubmit)="saveSong()">
     <label for="title"> name </label>
-    <input type="text" name="title" [(ngModel)]="song.title"/>
+    <input type="text" name="title" [(ngModel)]="song.title" required/>
     <label for="artist"> artist </label>
-    <input type="text" name="artist" [(ngModel)]="song.artist"/>
+    <input type="text" name="artist" [(ngModel)]="song.artist" required/>
     <label for="album"> album </label>
     <input type="text" name="album" [(ngModel)]="song.album"/>
     <label for="comment"> comment </label>

@@ -8,7 +8,8 @@ import { CreateReviewComponent } from './create-review/create-review.component';
 import { CreateSongComponent } from './create-song/create-song.component';
 import { DmcaTakeDownPolicyComponent } from './dmca-take-down-policy/dmca-take-down-policy.component';
 import { SecurityPrivacyPolicyComponent } from './security-privacy-policy/security-privacy-policy.component';
-import { LogComponent} from './log/log.component'
+import { LogComponent } from './log/log.component';
+import { BrowseSongsComponent } from './browse-songs/browse-songs.component';
 
 import {SecurityGuard} from './security.guard'
 import {AdminGuard} from './admin.guard'
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'secure/createSong', component: CreateSongComponent, canActivate: [SecurityGuard] },
   { path: 'policy/dmcaTakeDown', component: DmcaTakeDownPolicyComponent },
   { path: 'policy/securityPrivacy', component: SecurityPrivacyPolicyComponent },
-  { path: 'log', component: LogComponent, canActivate: [AdminGuard] }
+  { path: 'log', component: LogComponent, canActivate: [AdminGuard] },
+  { path: 'songs', component: BrowseSongsComponent }
 ];
 
 @NgModule({

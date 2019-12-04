@@ -14,7 +14,13 @@ router.put('/user/login/error', userController.loginError);
 
 //song routes
 router.get('/song/top', songController.topTenSongs);
+router.get('/song/search/:query', songController.search);
+
+//review routes
 router.get('/review/most-recent/song/:id', reviewController.getMostRecentReviewForSong);
 router.get('/review/song/:id', reviewController.getReviewsForSong);
+
+//policy routes
+
 
 module.exports = router;

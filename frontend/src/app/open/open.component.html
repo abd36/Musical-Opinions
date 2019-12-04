@@ -4,24 +4,32 @@
 <p>{{ error }}</p>
 <div>
 	<h2>sign in</h2>
-	<form (ngSubmit)="login()">
+	<form (ngSubmit)="login()" ngNativeValidate>
 		<label for="email">email:</label>
-		<input type="text" name="email" [(ngModel)]="userModel.email" />
+		<input type="text" name="email" [(ngModel)]="userModel.email" type="email"  required/>
 		<label for="password">password:</label>
-		<input type="text" name="password" [(ngModel)]="userModel.password" />
-		<input type="submit" />
+		<input type="text" name="password" [(ngModel)]="userModel.password" type="password" required/>
+		<input type="submit" value="sign in"/>
 	</form>
 </div>
-<div>
+
+<br>
+
+<button (click)="newaccount = !newaccount">create new account</button>
+<div *ngIf="newaccount">
 	<h2>create a new account</h2>
-	<form (ngSubmit)="createUser()">
+	<form (ngSubmit)="createUser()" ngNativeValidate>
         <label for="email">email:</label>
-        <input type="text" name="email" [(ngModel)]="newUserModel.email" />
+        <input type="text" name="email" [(ngModel)]="newUserModel.email" type="email" required/>
         <label for="password">password:</label>
-        <input type="text" name="password" [(ngModel)]="newUserModel.password" />
-        <input type="submit" />
-    </form>
+        <input type="text" name="password" [(ngModel)]="newUserModel.password" type="password" required/>
+        <input type="submit" value="create"/>
+	</form>
 </div>
+
+<br><br>
+
+<button (click)="router.navigate(['songs'])">browse all songs</button>
 
 <app-top-songs [change]="change"></app-top-songs>
 

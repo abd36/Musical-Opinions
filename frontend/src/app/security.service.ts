@@ -16,7 +16,7 @@ export class SecurityService {
 		// TODO: add some jwt authentication here, this is only checking if there is a token not if it is valid as well
 	}
 
-	getToken() { return localStorage.getItem('token') }
+	getToken() { return localStorage.getItem('token'); }
 
 	decodeToken() : User { return jwtDecode(localStorage.getItem("token")); }
 

@@ -1,14 +1,14 @@
 <h3>share your opinion</h3>
 
-<form novalidate (ngSubmit)="submit()">
+<form ngNativeValidate (ngSubmit)="submit()">
     <label for="rating">rating</label>
-    <input type="number" name="rating" [(ngModel)]="review.rating" />
+    <input type="number" name="rating" [(ngModel)]="review.rating" required min=1 max=5/>
     <br>
     <label for="comment">comment</label>
     <input type="text" name="comment" [(ngModel)]="review.comment" />
     <br>
     <label for="song">song</label>
-    <select name="song._id" [(ngModel)]="review.songId">
+    <select name="song._id" [(ngModel)]="review.songId" required>
         <option value="{{ song._id }}" [selected]="song._id == selectedSongId" *ngFor="let song of songs">
             {{ song.title }} - {{ song.artist }}
         </option>
