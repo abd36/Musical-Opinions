@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-
 import * as jwtDecode from "jwt-decode";
+
+import { SecureService } from './secure.service';
 
 import { User } from './user';
 
@@ -8,12 +9,27 @@ import { User } from './user';
 	providedIn: 'root'
 })
 export class SecurityService {
+	flag: boolean;
 
-	constructor() { }
+	constructor(private secureService: SecureService) { }
 
-	loggedIn(){
-		return !!localStorage.getItem('token')
-		// TODO: add some jwt authentication here, this is only checking if there is a token not if it is valid as well
+	loggedIn() : boolean {
+		this.checkUsers().then(res => { this.flag = true; }).catch(res => { this.flag = false; });
+		return this.flag;
+	}
+
+	checkUsers() : Promise<any> {
+		return new Promise((resolve, reject) => {
+			this.secureService.getAllUsers().subscribe(data => {
+				for (let user of data) {
+					console.log(data);
+					if (this.decodeToken()._id == user._id) {
+						return resolve();
+					}
+				}
+				return reject();
+			})
+		})
 	}
 
 	getToken() { return localStorage.getItem('token'); }

@@ -75,7 +75,7 @@ export class HttpService {
 	}
 
 	getDmcaTakeDown() {
-		return this.http.get<any>('/api/secure/dmcaTakeDown');
+		return this.http.get<any>('/api/open/dmcaTakeDown');
 	}
 
 	postDmcaTakeDownUpdate(policy: DmcaTakeDownPolicy) {
@@ -87,7 +87,7 @@ export class HttpService {
 	}
 
 	getSecurityPrivacy() {
-		return this.http.get<any>('/api/secure/securityPrivacy');
+		return this.http.get<any>('/api/open/securityPrivacy');
 	}
 
 	postSecurityPrivacyUpdate(policy: SecurityPrivacyPolicy) {

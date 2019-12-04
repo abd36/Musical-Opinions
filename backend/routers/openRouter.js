@@ -4,6 +4,8 @@ const songController = require('../controllers/songController');
 const reviewController = require('../controllers/reviewController');
 const userController = require('../controllers/userController');
 const passport = require('passport')
+const securityPrivacyController = require('../controllers/securityPrivacyController');
+const dmcaTakeDownController = require('../controllers/dmcaTakeDownController');
 
 router.get('/error', (req, res) => res.send({ error: "authentication failed, or token is expired" }));
 
@@ -21,6 +23,7 @@ router.get('/review/most-recent/song/:id', reviewController.getMostRecentReviewF
 router.get('/review/song/:id', reviewController.getReviewsForSong);
 
 //policy routes
-
+router.get('/securityPrivacy', securityPrivacyController.get);
+router.get('/dmcaTakeDown', dmcaTakeDownController.get);
 
 module.exports = router;

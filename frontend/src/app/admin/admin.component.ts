@@ -183,6 +183,9 @@ export class AdminComponent implements OnInit {
 
   populateUsers() {
     this.secureService.getAllUsers().subscribe(data => {
+      for (let user of data) {
+        console.log(user._id);
+      }
       if (!data.error) this.users = data;
       else this.error = data.error;
     });

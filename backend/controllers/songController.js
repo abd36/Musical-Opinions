@@ -3,9 +3,11 @@ const Song = require("../models/songModel");
 const Fuse = require("fuse.js");
 
 exports.search = function(req, res) {
+  //filter by hidden and copyRightString attributes
   Song.find({ hidden: false, copyRightStrike: false }, function(err, songs) {
     if (err) res.send({ error: err });
     else {
+      //use Fuse.js for soft-search functionality
       res.send(new Fuse(songs, {
         shouldSort: true,
         tokenize: true,
@@ -32,6 +34,7 @@ exports.all = function(req, res){
 }
 
 exports.allButHidden = function(req, res){
+  //filter by hidden and copyRightString attributes
   Song.find({ hidden: false, copyRightStrike: false }, {}, {}, function(err, songs) {
     if(err) {
       res.send({ error: err } )
@@ -43,6 +46,7 @@ exports.allButHidden = function(req, res){
 }
 
 exports.create = function(req, res) {
+  //create new model with json in the request
   let song = new Song({
     _id: mongoose.Types.ObjectId(),
     title: req.body.title,
@@ -65,6 +69,8 @@ exports.create = function(req, res) {
 };
 
 exports.topTenSongs = function(req, res) {
+  //filter by hidden and copyRightString attributes
+  //and sort by average rating in descending order
   Song.find({ hidden: false, copyRightStrike: false }, {}, { sort: { averageRating: -1 } }, function(err, songs) {
     if (err) {
       res.send("can't find songs - " + err);
@@ -76,6 +82,7 @@ exports.topTenSongs = function(req, res) {
 
 exports.toggleHide = function(req, res) {
   let id = req.params.id;
+  //find song by using song id in the url
   Song.findOne({ _id: id }, function(err, song) {
     if (err) {
       res.send({ error: err });
@@ -94,6 +101,7 @@ exports.toggleHide = function(req, res) {
 
 exports.toggleCopyRight = function(req, res) {
   let id = req.params.id;
+  //find song by using song id in the url
   Song.findOne({ _id: id }, function(err, song) {
     if (err) {
       res.send("can't find song - " + err);

@@ -12,12 +12,9 @@ export class SecurityGuard implements CanActivate {
   }
 
   canActivate(): boolean {
-    if (this.securityService.loggedIn()) {
-      return true;
-    }
-    else {
-      this.router.navigate(['']);
-      return false;
-    }
+    if (this.securityService.loggedIn()) return true;
+
+    this.router.navigate(['']);
+    return false;
   }
 }

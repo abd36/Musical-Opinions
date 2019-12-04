@@ -25,12 +25,10 @@ router.get('/song/allButHidden', songController.allButHidden);
 
 //dmca takedown routes
 router.post('/dmcaTakeDown/create', dmcaTakeDownController.create);
-router.get('/dmcaTakeDown', dmcaTakeDownController.get);
 router.post('/dmcaTakeDown/update/:id', dmcaTakeDownController.update);
 
 //privacy policy routes
 router.post('/securityPrivacy', securityPrivacyController.create);
-router.get('/securityPrivacy', securityPrivacyController.get);
 router.post('/securityPrivacy/update/:id', securityPrivacyController.update);
 
 //log routes
